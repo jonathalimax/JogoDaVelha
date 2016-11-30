@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">JogoDaVelha</string>
+    <string name="jogar_novamente">Jogar Novamente</string>
+    <string name="title">Jogo da Velha</string>
+    <string name="title_home">Jogadores</string>
+    <string name="jogador1">Jogador 1</string>
+    <string name="jogador2">Jogador 2</string>
+    <string name="jogar">Jogar</string>
+    <string name="placar">Placar</string>
+</resources>
