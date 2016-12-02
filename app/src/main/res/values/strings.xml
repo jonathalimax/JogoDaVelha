@@ -7,4 +7,9 @@
     <string name="jogador2">Jogador 2</string>
     <string name="jogar">Jogar</string>
     <string name="placar">Placar</string>
+    <string name="botao_voltar">Botão voltar</string>
+    <string name="letra_x">X</string>
+    <string name="placar_jogo">0</string>
+    <string name="placar_jogadores">0 Vitórias</string>
+
 </resources>

@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         statusJogo = (TextView) findViewById(R.id.statusJogo);
 
         intent = getIntent();
+
         jogador1 = (Jogador) intent.getSerializableExtra("jogador1");
         jogador2 = (Jogador) intent.getSerializableExtra("jogador2");
 
@@ -73,7 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 jogador2.setSimboloJogada("O");
             }
         }
-        isEnd();
+
+        if (isEnd()) {
+            intent = new Intent(getApplicationContext(), PlacarActivity.class);
+            intent.putExtra("jogador1", jogador1);
+            intent.putExtra("jogador2", jogador2);
+            startActivity(intent);
+        }
+        ;
 
     }
 
@@ -95,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
         return (TextView) getView().findViewWithTag("square" + number);
     }
 
-    public void isEnd() {
+    public boolean isEnd() {
         String s1 = null, s2, s3;
+        boolean retorno = false;
 
         for (int i = 0; i <= 7; ++i) {
             s1 = getSquare(finalState[i][0]).getText().toString();
@@ -106,23 +115,24 @@ public class MainActivity extends AppCompatActivity {
             if (!(s1.isEmpty() && s2.isEmpty() && s3.isEmpty())) {
 
                 if (s1.equals(s2) && s2.equals(s3)) {
+                    retorno = true;
 
                     if (s1.equals(jogador1.getSimboloJogada())) {
                         jogador1.setNumeroJogosGanhos(jogador1.getNumeroJogosGanhos() + 1);
                         nomeGanhador = jogador1.getNome();
                     } else {
-                        jogador2.setNumeroJogosGanhos(jogador2.getNumeroJogosGanhos() + 2);
+                        jogador2.setNumeroJogosGanhos(jogador2.getNumeroJogosGanhos() + 1);
                         nomeGanhador = jogador2.getNome();
                     }
 
                     toast = Toast.makeText(getView().getContext(), nomeGanhador + " ganhou!", Toast.LENGTH_SHORT);
                     toast.show();
-                    break;
                 } else {
                     setStatusVezJogar();
                 }
             }
         }
+        return retorno;
     }
 
     public void setStatusVezJogar() {
